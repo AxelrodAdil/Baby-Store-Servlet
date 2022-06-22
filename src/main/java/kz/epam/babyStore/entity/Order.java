@@ -2,7 +2,7 @@ package kz.epam.babyStore.entity;
 
 import java.io.Serializable;
 
-public class Order implements Serializable, Identifiable {
+public class Order implements Serializable {
 
     private Long orderId;
     private Long orderNumber;
@@ -21,8 +21,7 @@ public class Order implements Serializable, Identifiable {
         this.productId = productId;
     }
 
-    @Override
-    public Long getId() {
+    public Long getOrderId() {
         return orderId;
     }
 

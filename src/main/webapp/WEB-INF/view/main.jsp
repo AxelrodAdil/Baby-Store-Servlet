@@ -16,7 +16,7 @@
 <div class="container">
     <h3 class="pb-3 my-sm-3"><fmt:message bundle="${info}" key="information.name"/>: <fmt:message bundle="${loc}" key="language.info"/>.</h3>
     <div class="row justify-content-center">
-        <img src="${pageContext.request.contextPath}/static/images/baby-store.jpg" class="img-fluid" width="500" height="200" alt="logo">
+        <img src="${pageContext.request.contextPath}/static/images/baby-store.jpg" class="img-fluid" width="1185" height="855" alt="logo">
     </div>
 </div>
 

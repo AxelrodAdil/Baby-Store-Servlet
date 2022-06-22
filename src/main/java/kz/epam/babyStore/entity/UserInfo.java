@@ -2,7 +2,7 @@ package kz.epam.babyStore.entity;
 
 import java.io.Serializable;
 
-public class UserInfo implements Serializable, Identifiable {
+public class UserInfo implements Serializable {
 
     private Long userInfoId;
     private String userInfoName;
@@ -19,8 +19,7 @@ public class UserInfo implements Serializable, Identifiable {
         this.userInfoPhone = userInfoPhone;
     }
 
-    @Override
-    public Long getId() {
+    public Long getUserInfoId() {
         return userInfoId;
     }
 

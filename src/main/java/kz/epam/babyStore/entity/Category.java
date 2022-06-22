@@ -2,7 +2,7 @@ package kz.epam.babyStore.entity;
 
 import java.io.Serializable;
 
-public class Category implements Serializable, Identifiable {
+public class Category implements Serializable {
 
     private Long categoryId;
     private String categoryName;
@@ -15,8 +15,7 @@ public class Category implements Serializable, Identifiable {
         this.categoryName = categoryName;
     }
 
-    @Override
-    public Long getId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 

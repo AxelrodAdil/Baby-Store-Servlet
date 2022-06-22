@@ -3,7 +3,7 @@ package kz.epam.babyStore.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Promotion implements Serializable, Identifiable {
+public class Promotion implements Serializable {
 
     private Long promotionId;
     private Boolean promotionStatus;
@@ -30,8 +30,7 @@ public class Promotion implements Serializable, Identifiable {
         this.promotionPhotoPath = promotionPhotoPath;
     }
 
-    @Override
-    public Long getId() {
+    public Long getPromotionId() {
         return promotionId;
     }
 

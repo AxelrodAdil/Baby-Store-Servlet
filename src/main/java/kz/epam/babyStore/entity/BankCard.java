@@ -2,7 +2,7 @@ package kz.epam.babyStore.entity;
 
 import java.io.Serializable;
 
-public class BankCard implements Serializable, Identifiable {
+public class BankCard implements Serializable {
 
     private Long bankCardId;
     private Long user_info_id;
@@ -29,8 +29,7 @@ public class BankCard implements Serializable, Identifiable {
         this.bank_card_balance = bank_card_balance;
     }
 
-    @Override
-    public Long getId() {
+    public Long getBankCardId() {
         return bankCardId;
     }
 

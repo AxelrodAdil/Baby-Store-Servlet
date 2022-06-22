@@ -9,7 +9,7 @@
     <fmt:setBundle basename="localization.language" var="loc"/>
     <fmt:setBundle basename="information" var="info"/>
 
-    <form action=${pageContext.request.contextPath}/baby-store method="get">
+    <form action=${pageContext.request.contextPath}/ method="get">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="font-size: 20px">
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
@@ -17,58 +17,39 @@
                         <fmt:message bundle="${info}" key="information.name"/>
                     </a>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/baby-store?command=main">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/main">
                             <fmt:message bundle="${loc}" key="language.home"/>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <fmt:message bundle="${loc}" key="language.catalog"/>
                         </a>
-                        <div class="dropdown-menu">
-                            <c:forEach var="category" items="${categories}">
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/baby-store?command=catalog&categoryId=${category.id}">
-                                    <c:out value="${category.categoryName}"/></a>
-                            </c:forEach>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/category?category_name=diapers"><fmt:message key="language.diapers"/></a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/category?category_name=boy"><fmt:message key="language.boy"/></a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/category?category_name=girl"><fmt:message key="language.girl"/></a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="${pageContext.request.contextPath}/baby-store?command=promotions">
+                           href="${pageContext.request.contextPath}/promotions">
                             <fmt:message bundle="${loc}" key="language.promotions"/>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/baby-store?command=contacts">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/contacts">
                             <fmt:message bundle="${loc}" key="language.contacts"/>
                         </a>
                     </li>
-                    <c:if test="${role.name == 'admin'}">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                               role="button"
-                               aria-haspopup="true" aria-expanded="false">
-                                <fmt:message bundle="${loc}" key="language.control"/>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                <a class="dropdown-item"
-                                   href="${pageContext.request.contextPath}/baby-store?command=addProduct"><fmt:message bundle="${loc}" key="language.addProduct"/></a>
-                                <a class="dropdown-item"
-                                   href="${pageContext.request.contextPath}/baby-store?command=addPromotion"><fmt:message bundle="${loc}" key="language.addPromotion"/></a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item"
-                                   href="${pageContext.request.contextPath}/baby-store?command=viewOrders"><fmt:message bundle="${loc}" key="language.viewOrders"/></a>
-                            </div>
-                        </li>
-                    </c:if>
                 </ul>
                 <ul class="navbar-nav">
                     <c:choose>
                         <c:when test="${sessionScope.language=='en'}">
                             <li class="nav-item">
                                 <a class="nav-link active"
-                                   href="${pageContext.request.contextPath}/baby-store?${pageContext.request.queryString}&language=en">
+                                   href="${pageContext.request.contextPath}/${pageContext.request.queryString}&language=en">
                                     EN
                                 </a>
                             </li>
@@ -79,7 +60,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link"
-                                   href="${pageContext.request.contextPath}/baby-store?${pageContext.request.queryString}&language=ru">
+                                   href="${pageContext.request.contextPath}/${pageContext.request.queryString}&language=ru">
                                     RU
                                 </a>
                             </li>
@@ -92,7 +73,7 @@
                         <c:when test="${sessionScope.language=='ru'}">
                             <li class="nav-item">
                                 <a class="nav-link"
-                                   href="${pageContext.request.contextPath}/baby-store?${pageContext.request.queryString}&language=en">
+                                   href="${pageContext.request.contextPath}/${pageContext.request.queryString}&language=en">
                                     EN
                                 </a>
                             </li>
@@ -103,7 +84,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active"
-                                   href="${pageContext.request.contextPath}/baby-store?${pageContext.request.queryString}&language=ru">
+                                   href="${pageContext.request.contextPath}/${pageContext.request.queryString}&language=ru">
                                     RU
                                 </a>
                             </li>
@@ -132,19 +113,18 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="userDropdown">
                                     <a class="dropdown-item"
-                                       href="${pageContext.request.contextPath}/baby-store?command=profile">
+                                       href="${pageContext.request.contextPath}/profile">
                                         <fmt:message bundle="${loc}" key="language.profile"/></a>
-                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/baby-store?command=myOrders"><fmt:message bundle="${loc}"
-                                                                                   key="language.myOrders"/></a>
+                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/myOrders"><fmt:message bundle="${loc}" key="language.myOrders"/></a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item"
-                                       href="${pageContext.request.contextPath}/baby-store?command=logOut">
+                                       href="${pageContext.request.contextPath}/logOut">
                                         <fmt:message bundle="${loc}" key="language.logOut"/></a>
                                 </div>
                             </li>
                             <li class=" nav-item">
                                 <a class="nav-link"
-                                   href="${pageContext.request.contextPath}/baby-store?command=basket">
+                                   href="${pageContext.request.contextPath}/basket">
                                     <button type="button" class="btn btn-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
                                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>

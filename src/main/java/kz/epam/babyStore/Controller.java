@@ -1,11 +1,9 @@
 package kz.epam.babyStore;
 
-import kz.epam.babyStore.controller.command.Command;
-import kz.epam.babyStore.controller.command.CommandFactory;
-import kz.epam.babyStore.controller.command.CommandResult;
-import kz.epam.babyStore.controller.context.RequestContextHelper;
 import kz.epam.babyStore.dao.connection.ConnectionPool;
 import kz.epam.babyStore.exception.ConnectionException;
+import kz.epam.babyStore.service.Service;
+import kz.epam.babyStore.service.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,13 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 public class Controller extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass().getName());
-    private static final String COMMAND = "command";
-    private static final String PATH = "/baby-store?";
-    private static final String MAIN_COMMAND = "command=main";
+
+    private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
 
     @Override
     public void init() throws ServletException {
@@ -55,22 +54,12 @@ public class Controller extends HttpServlet {
     }
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String commandName = request.getParameter(COMMAND);
-        if (commandName == null || "".equals(commandName)) {
-            response.sendRedirect(PATH + MAIN_COMMAND);
-        } else {
-            Command command = CommandFactory.getInstance().getCommand(commandName);
-            RequestContextHelper contextHelper = new RequestContextHelper(request);
-            CommandResult result = command.execute(contextHelper, response);
-            dispatch(result, request, response);
-        }
-    }
-
-    private void dispatch(CommandResult result, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (result.isRedirect()) {
-            response.sendRedirect(PATH + result.getPage());
-        } else {
-            request.getRequestDispatcher(result.getPage()).forward(request, response);
+        String requestString = request.getServletPath();
+        Service service = serviceFactory.getService(requestString);
+        try {
+            service.execute(request, response);
+        } catch (ParseException | SQLException e) {
+            logger.error(e);
         }
     }
 }

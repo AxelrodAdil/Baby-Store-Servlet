@@ -3,7 +3,7 @@ package kz.epam.babyStore.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class UserOrder implements Serializable, Identifiable {
+public class UserOrder implements Serializable {
 
     private Long userOrderId;
     private String userOrderAddress;
@@ -23,8 +23,7 @@ public class UserOrder implements Serializable, Identifiable {
         this.userOrderStatusId = userOrderStatusId;
     }
 
-    @Override
-    public Long getId() {
+    public Long getUserOrderId() {
         return userOrderId;
     }
 

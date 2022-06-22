@@ -2,7 +2,7 @@ package kz.epam.babyStore.entity;
 
 import java.io.Serializable;
 
-public class ValidOrderStatus implements Serializable, Identifiable {
+public class ValidOrderStatus implements Serializable {
 
     private Long validOrderStatusId;
     private String validOrderStatusName;
@@ -15,8 +15,7 @@ public class ValidOrderStatus implements Serializable, Identifiable {
         this.validOrderStatusName = validOrderStatusName;
     }
 
-    @Override
-    public Long getId() {
+    public Long getValidOrderStatusId() {
         return validOrderStatusId;
     }
 

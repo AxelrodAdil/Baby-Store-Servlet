@@ -1,16 +1,28 @@
 package kz.epam.babyStore.service;
 
-import kz.epam.babyStore.service.impl.CategoryServiceImpl;
+import kz.epam.babyStore.service.impl.ErrorService;
+import kz.epam.babyStore.service.impl.MainService;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ServiceFactory {
 
-    private final CategoryService categoryService = new CategoryServiceImpl();
+    private static final Map<String, Service> SERVICE_MAP = new HashMap<>();
 
-    private ServiceFactory() {
+    public Service getService(String request) {
+        Service service = SERVICE_MAP.get("/error");
+        for (Map.Entry<String, Service> pair : SERVICE_MAP.entrySet()) {
+            if (request.equalsIgnoreCase(pair.getKey())) {
+                service = SERVICE_MAP.get(pair.getKey());
+            }
+        }
+        return service;
     }
 
-    public CategoryService getCategoryService() {
-        return categoryService;
+    static {
+        SERVICE_MAP.put("/error", new ErrorService());
+        SERVICE_MAP.put("/main", new MainService());
     }
 
     public static ServiceFactory getInstance() {
