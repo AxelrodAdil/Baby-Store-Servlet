@@ -5,6 +5,21 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+/target
+target/
+target/*
+**/target
+*/target/*
+!target/
+target/site/*
+
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+mvnw.cmd
+mvnw
+.mvn
+
 ### STS ###
 .apt_generated
 .classpath
@@ -35,3 +50,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Mac OS ###
+.DS_Store
+/apache-tomcat-9.0.64/
+/apache-tomcat-9.0.62/
+/logs/text.log
