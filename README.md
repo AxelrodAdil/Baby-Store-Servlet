@@ -1,4 +1,4 @@
-# Baby-Store-Servlet. The project is unfinished. Need extra time :(
+# Baby-Store-Servlet
 
 1) To download the project from github, run the command:
 ```
@@ -18,5 +18,6 @@ failed to implement baseline migration without spring
 
 6) Start the project :)
 
+The project is unfinished
 
 https://github.com/AxelrodAdil/BookStore_Samgau
